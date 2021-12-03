@@ -1,10 +1,25 @@
 from flask import Flask, render_template, request
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
+
 import Invoice
 import InfaktApiClient
 import calendar
 import datetime
 
 app = Flask(__name__)
+auth = HTTPBasicAuth()
+
+users = {
+    "admin": generate_password_hash("Niedasieukryc*8")
+}
+
+@auth.verify_password
+def verify_password(username, password):
+	if username in users and \
+		check_password_hash(users.get(username), password):
+		return username
+
 
 def generateAndSend(gross_price):
 	client_id = 9220335
@@ -29,7 +44,9 @@ def generateAndSend(gross_price):
 	return invoice
 
 @app.route("/", methods=('GET', 'POST'))
+@auth.login_required
 def index():
+	app.logger.info("auth: " + str(auth.current_user()))
 	if request.method == 'POST':
 		gross_price = request.form['gross_price']
 		invoice = generateAndSend(gross_price)

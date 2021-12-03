@@ -10,3 +10,4 @@ requests==2.21.0
 soupsieve==1.8
 urllib3>=1.24.2
 flask==2.0.2
+flask_httpauth==4.5.0
