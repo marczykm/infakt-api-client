@@ -57,4 +57,11 @@ if __name__ == "__main__":
 	client.sendViaEmail(invoice.id, email)
 	client.generatePdf(invoice.id)
 	# client.deleteInvoice(invoice.id)
-	
+
+def generateAndSend(gross_price):
+	log.info('Running main application')
+	invoice = client.createInvoice(client_id, sale_date, invoice_date, payment_date, gross_price)
+	client.findInvoice(invoice.id)
+	client.sendViaEmail(invoice.id, email)
+	client.generatePdf(invoice.id)
+	# client.deleteInvoice(invoice.id)

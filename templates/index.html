@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Infakt Invoice Generator</title>
+</head>
+<body>
+	<h1>Infakt Invoice Generator</h1>
+	<form method="post">
+		<label for="gross_price">Brutto</label>
+		<input name="gross_price" required>
+		<input type="submit" name="Generuj i wyślij">
+	</form>
+	{% if invoice_number %}
+		<h2>Wygenerowano fakturę nr {{ invoice_number }}</h2>
+	{% endif %}
+</body>
+</html>

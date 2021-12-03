@@ -9,7 +9,7 @@ class Invoice():
         self.tax_price = json['tax_price'] / 100
         self.gross_price = json['gross_price'] / 100
         self.client_id = json['client_id']
-
+    
     def __str__(self):
         return '''
 id: {}
