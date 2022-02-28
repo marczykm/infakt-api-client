@@ -29,10 +29,19 @@ def generateAndSend(gross_price):
 	previousYear = (first - datetime.timedelta(days=1)).year
 	r = calendar.monthrange(previousYear, previousMonth)
 	lastDayOfPreviousMonth = r[1]
-	sale_date = str(previousYear) + "-" + str(previousMonth) + "-" + str(lastDayOfPreviousMonth)
+	if (previousMonth < 10):
+		stringMonth = '0'+str(previousMonth)
+	else:
+		stringMonth = str(previousMonth)
+	sale_date = str(previousYear) + "-" + stringMonth + "-" + str(lastDayOfPreviousMonth)
 	invoice_date = sale_date
+	app.logger.info("sale_date: " + sale_date)
 	today = datetime.date.today()
-	payment_date = str(today.year) + "-" + str(today.month) + '-10'
+	if (today.month < 10):
+		stringTodayMonth = '0'+str(today.month)
+	else:
+		stringTodayMonth = str(today.month)
+	payment_date = str(today.year) + "-" + stringTodayMonth + '-10'
 	gross_price = float(gross_price)
 	email = 'marcin.marczyk@dataart.com'
 	client = InfaktApiClient.InfaktApiClient()
@@ -54,4 +63,4 @@ def index():
 	return render_template('index.html')
 
 if __name__ == '__main__':
-	app.run(debug=False, host='0.0.0.0')
+	app.run(debug=False, host='0.0.0.0', port=5001)

@@ -75,7 +75,8 @@ class InfaktApiClient:
                     {
                         "name": "Wytwarzanie oprogramowania",
                         "gross_price": str(int(grossPrice*100)),
-                        "tax_symbol": 23
+                        "tax_symbol": 23,
+                        "flat_rate_tax_symbol": 12
                     }
                 ]
             }
