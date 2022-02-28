@@ -106,3 +106,4 @@ venv.bak/
 infakt-api-client.yaml
 
 *.pdf
+*.tar.xz
